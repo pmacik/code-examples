@@ -1,0 +1,16 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: es
+  annotations:
+    service.binding/type: "elasticsearch"
+    service.binding/uri: "path={.metadata.name}-es-http.{.metadata.namespace}.svc.cluster.local:9200"
+    service.binding/username: "elastic"
+    service.binding/password: "path={.metadata.name}-es-elastic-user,objectType=Secret,sourceKey=elastic"
+spec:
+  version: 7.10.0
+  nodeSets:
+    - name: default
+      count: 1
+      config:
+        node.store.allow_mmap: false

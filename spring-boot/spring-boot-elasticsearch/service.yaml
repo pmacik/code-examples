@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2022-04-07T08:50:30Z"
+  name: es
+  namespace: my-es
+  resourceVersion: "176747"
+  uid: 1251c8cb-af11-4645-b517-f7bc83d14e37
+spec:
+  clusterIP: 172.30.207.115
+  clusterIPs:
+  - 172.30.207.115
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: es
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

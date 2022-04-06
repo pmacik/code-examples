@@ -1,7 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-<title>Product Search</title>
+<title>Product Search (${baseUrl})</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -34,7 +34,7 @@
     $(document).ready(function() {
         $('#productNamedesc').autocomplete({
 	           source: function (request, response){
-	               $.get("http://localhost:8080/suggestions?",{q : request.term},function(data, status){
+	               $.get("/suggestions?",{q : request.term},function(data, status){
 	                  $("#results").html("");
 	                  if(status=='success'){
 	                    response(data);
@@ -52,7 +52,7 @@
              var response = '';
 	         $.ajax({
 	            type: "GET",
-	            url: "http://localhost:8080/products?q="+inputText,
+	            url: "/products?q="+inputText,
 	            async: true,
 	            success: function(resp) {
 	                var len = resp.length;
